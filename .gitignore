@@ -37,4 +37,4 @@ config/environments/*.local.yml
 .env
 /frontend/.env
 
-config/credentials.yml.enc
+.ssh
