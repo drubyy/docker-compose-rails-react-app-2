@@ -1,3 +1,7 @@
+pre-build:
+	if [ -d ".ssh" ]; then rm -Rf .ssh; fi\
+	&& mkdir .ssh && sudo cp -r ~/.ssh . && sudo chmod 777 .ssh && sudo chmod 777 .ssh/*
+
 build:
 	docker compose build
 
