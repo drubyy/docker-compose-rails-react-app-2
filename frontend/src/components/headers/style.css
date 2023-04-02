@@ -1,0 +1,42 @@
+.navbar {
+  font-size: 50px;
+  color: white;
+  background-color: red;
+  text-align: -webkit-center;
+  padding-left: 200px;
+  padding-right: 50px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-default-wrapper {
+  text-align: -webkit-center;
+}
+
+.wrapper-link-navbar {
+  font-size: 20px;
+}
+
+.wrapper-link-navbar a {
+  color: white ;
+}
+
+.breakline-navbar {
+  width: 95%;
+  border: 1px solid red;
+  opacity: unset;
+}
+
+.wrapper-user-infor {
+  font-size: 20px;
+  width: 550px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrapper-user-infor button {
+  color: red;
+}

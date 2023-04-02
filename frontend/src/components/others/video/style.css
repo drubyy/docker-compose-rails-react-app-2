@@ -1,0 +1,13 @@
+.title-video-youtube {
+  font-weight: 600;
+  color: red;
+  font-size: 20px;
+}
+
+.statistic-video {
+  display: flex;
+}
+
+.pr-30 {
+  padding-right: 30px;
+}

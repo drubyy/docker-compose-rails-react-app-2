@@ -1,0 +1,7 @@
+.modal-share .ant-btn-primary {
+  background-color: red !important;
+}
+
+.modal-share .ant-form-item-explain-error {
+  color:  red !important;
+}

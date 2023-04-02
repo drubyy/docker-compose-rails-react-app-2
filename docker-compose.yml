@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:12.1
+    volumes:
+      - data_db:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    container_name: remi-db
+  app:
+    build: .
+    container_name: remi-app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+  app_frontend:
+    container_name: remi-app-frontend
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend/:/frontend/
+      - node_modules:/frontend/node_modules/
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+volumes:
+  data_db:
+  node_modules:
