@@ -46,3 +46,6 @@ seed:
 
 npm-install:
 	docker compose exec -it app_frontend npm install $(package) --save
+
+logs:
+	docker compose logs $(name)
