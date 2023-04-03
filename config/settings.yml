@@ -1,2 +1,6 @@
 paginate:
   per_page: 10
+
+validate:
+  resource:
+    resource_id_max_length: 100
