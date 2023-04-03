@@ -22,6 +22,15 @@
   - Deployment
     - Capistrano (For deploy rails app)
 
+  - Web server
+    - Nginx
+
+  - App server
+    - Passenger
+
+  - Integration test
+    - Selenium
+
 * Setup using docker
   - Make sure at locally, you have key and permission to ssh to server
   - Then run `make pre-build` (if using capistrano inside of docker container to deploy)
@@ -30,3 +39,4 @@
 
 Other command support like debugging, attach logs,... you can see at Makefile
 
+DEMO: https://master.d34spwopu0ty0q.amplifyapp.com/
