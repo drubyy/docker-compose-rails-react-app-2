@@ -14,4 +14,9 @@ set :ssh_options, {
 
 set :copy_exclude, 'Makefile'
 
+set :keep_releases, 2
+
+set :bundle_path, nil
+
 append :linked_files, 'config/master.key'
+append :linked_files, 'db/production.sqlite3'
