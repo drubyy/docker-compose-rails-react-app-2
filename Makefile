@@ -49,3 +49,6 @@ npm-install:
 
 logs:
 	docker compose logs $(name)
+
+restart:
+	docker compose down && docker compose up -d
