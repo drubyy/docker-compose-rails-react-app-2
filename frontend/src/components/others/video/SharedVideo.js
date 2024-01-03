@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import './style.css'
 
 function SharedVideo({ originResource, members, resources }) {
-  const target = resources.find((resource) => (resource.id == originResource.attributes.resource_id))
+  const target = resources.find((resource) => (resource.id === originResource.attributes.resource_id))
   if(target === undefined) return null
 
   const sharedBy = () => (

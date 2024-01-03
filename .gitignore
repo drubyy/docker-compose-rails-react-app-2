@@ -27,8 +27,8 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
-/config/master.key
+# Generate new key after and ignore master key for decrypting credentialxs and more.
+# /config/master.key
 
 config/settings.local.yml
 config/settings/*.local.yml
