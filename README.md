@@ -35,6 +35,7 @@
   - Make sure at locally, you have key and permission to ssh to server
   - Then run `make pre-build` (if using capistrano inside of docker container to deploy)
   - `cp .env.example .env`
+  - `cp frontend/.env.example frontend/.env`
   - `make build`
   - `make up`
 
