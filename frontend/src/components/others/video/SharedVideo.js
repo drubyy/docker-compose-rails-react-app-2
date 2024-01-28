@@ -17,7 +17,7 @@ function SharedVideo({ originResource, members, resources }) {
 
   return (
     <Row>
-      <Col sm={6}><iframe width="550" height="375" src={urlEmbed()}></iframe></Col>
+      <Col sm={6}><iframe title="Sample" width="550" height="375" src={urlEmbed()}></iframe></Col>
       <Col sm={6}>
         <p className='title-video-youtube'>{target.snippet.title}</p>
         <p>Shared by: {sharedBy()}</p>
