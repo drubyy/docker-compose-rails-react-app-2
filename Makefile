@@ -11,7 +11,7 @@ up:
 down:
 	docker compose down
 
-debug: dev
+debug: up
 	docker attach --detach-keys="ctrl-c" $(shell docker compose ps -q app)
 
 bundle:
