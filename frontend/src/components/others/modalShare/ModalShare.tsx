@@ -2,7 +2,16 @@ import React from 'react'
 import { Form, Modal, Input } from 'antd';
 import './style.css'
 
-function ModalShare({isVisible, setVisible, onCancel = () => {}, triggerFetchVideos, setTriggerFetchVideos, callBackOk = () => {}}) {
+type Props = {
+  isVisible: boolean;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onCancel?: Function;
+  triggerFetchVideos?: number;
+  setTriggerFetchVideos?: React.Dispatch<React.SetStateAction<number>>;
+  callBackOk: Function;
+}
+
+function ModalShare({ isVisible, setVisible, onCancel = () => {}, triggerFetchVideos, setTriggerFetchVideos, callBackOk = () => {} }: Props) {
   const [form] = Form.useForm()
 
   const handleCancel = () => {

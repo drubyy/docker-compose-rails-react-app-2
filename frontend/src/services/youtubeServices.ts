@@ -1,6 +1,6 @@
 import request from './request'
 
-export const fetchVideos = (resourceIds) => {
+export const fetchVideos = (resourceIds: string) => {
   const response = request(
     'GET',
     'https://youtube.googleapis.com/youtube/v3/videos',
@@ -10,6 +10,7 @@ export const fetchVideos = (resourceIds) => {
       key: process.env.REACT_APP_YOUTUBE_API_KEY,
     },
     false
-  )
-  return response
+  );
+
+  return response;
 }

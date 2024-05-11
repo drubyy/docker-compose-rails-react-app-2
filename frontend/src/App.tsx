@@ -14,18 +14,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={
-          <DefaultLayout childComponent={ <Registration/>} showLink={false} />
+          <DefaultLayout childComponent={<Registration/>} showLink={false} />
         } />
         <Route path="/login" element={
-          <DefaultLayout childComponent={ <Login/>} showLink={false} />
+          <DefaultLayout childComponent={<Login/>} showLink={false} />
         } />
         <Route path="/" element={<DefaultLayout triggerFetchVideos={triggerFetchVideos} setTriggerFetchVideos={setTriggerFetchVideos} childComponent={
           <Dashboard triggerFetchVideos={triggerFetchVideos} />
         } />} />
         <Route path="/private" element={
-          <PrivateRoute>
-            <DefaultLayout childComponent={<Dashboard/>} />
-          </PrivateRoute>
+          <PrivateRoute children={<DefaultLayout childComponent={<Dashboard/>} />} />
         } />
         <Route path='*' element={<NotFound />} />
       </Routes>

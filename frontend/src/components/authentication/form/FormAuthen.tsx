@@ -3,18 +3,20 @@ import request from '../../../services/request'
 import { storageUserInfor } from '../../../services/request'
 import { Input, Form, Button } from 'antd'
 
-const FormAuthen = ({urlSubmit, btnSubmitText}) => {
+type Props = { urlSubmit: string; btnSubmitText: string }
+
+const FormAuthen = ({ urlSubmit, btnSubmitText }: Props) => {
   const [form] = Form.useForm()
 
   const onFinish = async () => {
     const formValues = form.getFieldsValue()
     const response = await request('POST', urlSubmit, formValues, false)
+
     if(response.status === 200){
       storageUserInfor(response.headers.authorization.replace('Bearer ', ''), response.data.data.email)
       window.location.href = '/'
     }else if(response.status === 422){
       if(response.data.errors) {
-        console.log(response.data.errors)
         for (const [key, value] of Object.entries(response.data.errors)) {
           form.setFields([{
             name: ['user', key],

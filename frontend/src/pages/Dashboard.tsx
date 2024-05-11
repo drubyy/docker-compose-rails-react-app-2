@@ -3,31 +3,38 @@ import SharedVideo from '../components/others/video/SharedVideo';
 import request from '../services/request';
 import { fetchVideos } from '../services/youtubeServices'
 import { Pagination } from 'antd';
+import { IOriginalResourceRes, IResourceRes } from '../interfaces/resource.interface';
+import { IYtResourceRes, IYtResourceItem } from '../interfaces/youtube-resource.interface';
 
-const Dashboard = ({triggerFetchVideos}) => {
+type Props = {
+  triggerFetchVideos?: number;
+}
+
+const Dashboard = ({ triggerFetchVideos }: Props) => {
   const [members, setMembers] = useState([])
-  const [originalResources, setOriginalResources] = useState([])
-  const [resources, setResources] = useState([])
+  const [originalResources, setOriginalResources] = useState<IOriginalResourceRes[]>([])
+  const [resources, setResources] = useState<IYtResourceItem[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalRecords, setTotalRecords] = useState(0)
 
-  const fetchResouresFromYoutube = async (resourceIds) => {
-    const response = await fetchVideos(resourceIds)
+  const fetchResouresFromYoutube = async (resourceIds: string) => {
+    const response: { data: IYtResourceRes } = await fetchVideos(resourceIds)
     setResources(response.data.items)
   }
 
-  const fetchResources = (page=1) => {
+  const fetchResources = (page: number = 1) => {
     request('GET', '/dashboards', {page: page}).then((res) => {
       setTotalRecords(res.data.total_records)
       const response = res.data.data
-      setOriginalResources(response)
+
+      setOriginalResources(response.data)
       setMembers(response.included)
-      const resourceIds = response.data.map((resource) => (resource.attributes.resource_id))
+      const resourceIds = response.data.map((resource: IResourceRes) => (resource.attributes.resource_id))
       fetchResouresFromYoutube(resourceIds.join(','))
     })
   }
 
-  const handleChangePage = (page) => {
+  const handleChangePage = (page: number) => {
     setCurrentPage(page)
     fetchResources(page)
   }
@@ -44,7 +51,7 @@ const Dashboard = ({triggerFetchVideos}) => {
   return (
     <>
       {
-        originalResources.data && originalResources.data.map((originResource) => (
+        originalResources && originalResources.map((originResource: IOriginalResourceRes) => (
           <SharedVideo key={originResource.id} originResource={originResource} members={members} resources={resources} />
         ))
       }
