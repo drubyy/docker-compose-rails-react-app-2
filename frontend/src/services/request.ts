@@ -7,14 +7,14 @@ const handleErrorToken = () => {
   window.location.href = '/login'
 }
 
-export const storageUserInfor = (token, email) => {
+export const storageUserInfor = (token: string, email: string) => {
   localStorage.setItem('email', email)
   localStorage.setItem('jwt', token)
   localStorage.setItem('loggedIn', 'true')
 }
 
-async function request(method, url, params = {}, sendWithBearer = true, options) {
-  const headers = {
+async function request(method: 'GET' | 'POST' | 'PATCH' | 'PUT'| 'DELETE', url: string, params: object = {}, sendWithBearer: boolean = true, options?: object) {
+  const headers: any = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   }
@@ -23,22 +23,22 @@ async function request(method, url, params = {}, sendWithBearer = true, options)
     headers['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`
   }
 
-  const requestBody = {
+  const requestConf: any = {
     method,
     url: url,
     headers: headers,
     ...options,
   }
   if (['POST', 'PUT', 'PATCH'].includes(method)) {
-    requestBody.data = params
+    requestConf.data = params
   } else {
-    requestBody.params = params
+    requestConf.params = params
   }
 
   try {
-    const response = await axios(requestBody)
+    const response = await axios(requestConf)
     return response
-  } catch (error) {
+  } catch (error: any) {
     if(error.response.status === 401){
       const currentPath = new URL(window.location.href).pathname
 

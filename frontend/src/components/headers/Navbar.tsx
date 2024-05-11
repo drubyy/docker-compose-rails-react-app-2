@@ -7,7 +7,13 @@ import ModalShare from '../others/modalShare/ModalShare'
 import { submitShare } from '../../services/shareService'
 import './style.css'
 
-function Navbar({showLink, triggerFetchVideos, setTriggerFetchVideos}) {
+type Props = {
+  showLink: boolean;
+  triggerFetchVideos?: number;
+  setTriggerFetchVideos?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function Navbar({ showLink, triggerFetchVideos, setTriggerFetchVideos }: Props) {
   const [visibleModalShare, setVisibleModalShare] = useState(false)
 
   const currentUserOrLink = () => {
