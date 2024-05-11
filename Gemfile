@@ -28,6 +28,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'kaminari'
 gem 'config'
 
+# Simple Ruby Gem to get video information from different providers, Read more: https://github.com/thibaudgg/video_info
+gem 'video_info'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

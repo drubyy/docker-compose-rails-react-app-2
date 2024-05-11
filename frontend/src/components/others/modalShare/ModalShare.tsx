@@ -9,9 +9,17 @@ type Props = {
   triggerFetchVideos?: number;
   setTriggerFetchVideos?: React.Dispatch<React.SetStateAction<number>>;
   callBackOk: Function;
+  pushNotifyNewVideoShared: Function;
 }
 
-function ModalShare({ isVisible, setVisible, onCancel = () => {}, triggerFetchVideos, setTriggerFetchVideos, callBackOk = () => {} }: Props) {
+function ModalShare({
+  isVisible, setVisible,
+  onCancel = () => {},
+  triggerFetchVideos,
+  setTriggerFetchVideos,
+  callBackOk = () => {},
+  pushNotifyNewVideoShared = () => {}
+}: Props) {
   const [form] = Form.useForm()
 
   const handleCancel = () => {
@@ -19,8 +27,9 @@ function ModalShare({ isVisible, setVisible, onCancel = () => {}, triggerFetchVi
     setVisible(false)
   }
 
-  const handleOk = () => {
-    callBackOk(form, setVisible, triggerFetchVideos, setTriggerFetchVideos)
+  const handleOk = async () => {
+    const id = await callBackOk(form, setVisible, triggerFetchVideos, setTriggerFetchVideos)
+    pushNotifyNewVideoShared(id);
   }
 
   return (

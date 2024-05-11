@@ -5,12 +5,10 @@ import { fetchVideos } from '../services/youtubeServices'
 import { Pagination } from 'antd';
 import { IOriginalResourceRes, IResourceRes } from '../interfaces/resource.interface';
 import { IYtResourceRes, IYtResourceItem } from '../interfaces/youtube-resource.interface';
+import WithNotifycationLayout from '../components/layouts/WithNotifycationLayout';
 
-type Props = {
-  triggerFetchVideos?: number;
-}
-
-const Dashboard = ({ triggerFetchVideos }: Props) => {
+const Dashboard = () => {
+  const [triggerFetchVideos, setTriggerFetchVideos] = useState(1)
   const [members, setMembers] = useState([])
   const [originalResources, setOriginalResources] = useState<IOriginalResourceRes[]>([])
   const [resources, setResources] = useState<IYtResourceItem[]>([])
@@ -49,14 +47,20 @@ const Dashboard = ({ triggerFetchVideos }: Props) => {
   }, [triggerFetchVideos])
 
   return (
-    <>
-      {
-        originalResources && originalResources.map((originResource: IOriginalResourceRes) => (
-          <SharedVideo key={originResource.id} originResource={originResource} members={members} resources={resources} />
-        ))
+    <WithNotifycationLayout
+      triggerFetchVideos={triggerFetchVideos}
+      setTriggerFetchVideos={setTriggerFetchVideos}
+      childComponent={
+        <>
+          {
+            originalResources && originalResources.map((originResource: IOriginalResourceRes) => (
+              <SharedVideo key={originResource.id} originResource={originResource} members={members} resources={resources} />
+            ))
+          }
+          <Pagination current={currentPage} total={totalRecords} onChange={(page) => handleChangePage(page)} />
+        </>
       }
-      <Pagination current={currentPage} total={totalRecords} onChange={(page) => handleChangePage(page)} />
-    </>
+    />
   )
 }
 

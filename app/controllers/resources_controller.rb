@@ -3,8 +3,9 @@ class ResourcesController < ApplicationController
 
   def create
     resource = current_user.resources.new resource_params
+
     if resource.save
-      render_json({status: 200})
+      render_json({status: 200, data: { id: resource.id }})
     else
       render_json({status: 422, errors: resource.errors}, :unprocessable_entity)
     end

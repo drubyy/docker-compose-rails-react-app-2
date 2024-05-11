@@ -1,0 +1,1 @@
+export const GENERAL_NOTIFICATION_CHANNEL = 'NotifycationChannel'

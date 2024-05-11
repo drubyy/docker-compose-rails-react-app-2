@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import { isUserLoggedIn, currentUser } from '../../utils/manageAuthentication'
 import { performLogout } from '../../services/authServices'
@@ -11,9 +11,10 @@ type Props = {
   showLink: boolean;
   triggerFetchVideos?: number;
   setTriggerFetchVideos?: React.Dispatch<React.SetStateAction<number>>;
+  pushNotifyNewVideoShared?: Function;
 }
 
-function Navbar({ showLink, triggerFetchVideos, setTriggerFetchVideos }: Props) {
+function Navbar({ showLink, triggerFetchVideos, setTriggerFetchVideos, pushNotifyNewVideoShared = () => {} }: Props) {
   const [visibleModalShare, setVisibleModalShare] = useState(false)
 
   const currentUserOrLink = () => {
@@ -21,7 +22,7 @@ function Navbar({ showLink, triggerFetchVideos, setTriggerFetchVideos }: Props) 
       return (
         <div className='wrapper-user-infor'>
           <span>Welcome {currentUser.email}</span>
-          <Button onClick={() => {setVisibleModalShare(true)}}>Share a movive</Button>
+          <Button onClick={() => {setVisibleModalShare(true)}}>Share a movie</Button>
           <Button onClick={performLogout}>Logout</Button>
         </div>
       )
@@ -49,6 +50,7 @@ function Navbar({ showLink, triggerFetchVideos, setTriggerFetchVideos }: Props) 
         triggerFetchVideos={triggerFetchVideos}
         setTriggerFetchVideos={setTriggerFetchVideos}
         callBackOk={submitShare}
+        pushNotifyNewVideoShared={pushNotifyNewVideoShared}
       />
     </div>
   );
