@@ -46,9 +46,11 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
+    ansi (1.5.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    ast (2.4.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -165,6 +167,7 @@ GEM
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
+    iso8601 (0.13.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -214,10 +217,14 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     net-ssh (7.1.0)
+    net_http_timeout_errors (1.0.0)
     nio4r (2.5.8)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    oga (3.4)
+      ast
+      ruby-ll (~> 2.1)
     orm_adapter (0.5.0)
     public_suffix (5.0.1)
     puma (3.12.6)
@@ -277,6 +284,9 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.0)
+    ruby-ll (2.1.3)
+      ansi
+      ast
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -323,6 +333,10 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    video_info (4.2.0)
+      iso8601 (~> 0.13.0)
+      net_http_timeout_errors (~> 1.0.0)
+      oga (~> 3.4)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-jwt_auth (0.8.0)
@@ -381,6 +395,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  video_info
   web-console (>= 3.3.0)
 
 RUBY VERSION

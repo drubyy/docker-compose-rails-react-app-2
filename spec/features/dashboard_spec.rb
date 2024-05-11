@@ -10,7 +10,7 @@ RSpec.feature "Dashboard", type: :feature, js: true do
     click_button "Login"
 
     #perform share a movie after login
-    click_button "Share a movive"
+    click_button "Share a movie"
     fill_in "resource_url", with: "something"
     click_button "Share"
 
@@ -26,7 +26,7 @@ RSpec.feature "Dashboard", type: :feature, js: true do
     click_button "Login"
 
     #perform share a movie after login
-    click_button "Share a movive"
+    click_button "Share a movie"
     fill_in "resource_url", with: "https://www.youtube.com/watch?v=2DUdg4dnse8"
     click_button "Share"
 

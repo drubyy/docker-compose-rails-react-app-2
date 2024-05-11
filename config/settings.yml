@@ -4,3 +4,7 @@ paginate:
 validate:
   resource:
     resource_id_max_length: 100
+
+video_info:
+  prefix:
+    youtube: 'http://www.youtube.com/watch?v='

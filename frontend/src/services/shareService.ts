@@ -2,7 +2,7 @@ import { fetchVideos } from './youtubeServices'
 import request from './request'
 import { FormInstance } from 'antd'
 
-export const submitShare = (
+export const submitShare = async (
   form: FormInstance<any>,
   setVisible: React.Dispatch<React.SetStateAction<boolean>>,
   triggerFetchVideos: number,
@@ -11,8 +11,8 @@ export const submitShare = (
   const resource_url = form.getFieldValue('resource_url')
   if(resource_url === null || resource_url === '' || resource_url === undefined) return
 
-  const isValidUrl = verifyResource(resource_url)
-  if(!isValidUrl){
+  const findValidResource = verifyResource(resource_url)
+  if(!findValidResource){
     form.setFields([{
       name: 'resource_url',
       errors: ['We cannot found your video you wanna share']
@@ -20,7 +20,9 @@ export const submitShare = (
     return
   }
 
-  performShare(isValidUrl, setVisible, triggerFetchVideos, setTriggerFetchVideos)
+  const id = await performShare(findValidResource, setVisible, triggerFetchVideos, setTriggerFetchVideos)
+
+  return id;
 }
 
 const verifyResource = (resourceUrl: string) => {
@@ -34,13 +36,13 @@ const verifyResource = (resourceUrl: string) => {
   }
 }
 
-const performShare = (
+const performShare = async (
   resource_id: string,
   setVisible: React.Dispatch<React.SetStateAction<boolean>>,
   triggerFetchVideos: number,
   setTriggerFetchVideos: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  request(
+  return await request(
     'POST',
     '/resources',
     {
@@ -52,6 +54,8 @@ const performShare = (
     if(res.status === 200) {
       setTriggerFetchVideos(triggerFetchVideos + 1)
       setVisible(false)
+
+      return res.data.data.id
     }
   })
 }

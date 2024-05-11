@@ -1,0 +1,1 @@
+VideoInfo.provider_api_keys = { youtube: Settings.video_info.api_keys.youtube }
