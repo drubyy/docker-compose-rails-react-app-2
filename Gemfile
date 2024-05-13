@@ -27,6 +27,7 @@ gem 'fast_jsonapi'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'kaminari'
 gem 'config'
+gem 'redis', '~> 4.0'
 
 # Simple Ruby Gem to get video information from different providers, Read more: https://github.com/thibaudgg/video_info
 gem 'video_info'
@@ -53,6 +54,7 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+  gem 'pry', '~> 0.14.2'
 end
 
 group :test do
@@ -62,7 +64,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'capybara-screenshot'
-  gem "database_cleaner-active_record"
+  gem 'database_cleaner-active_record'
+  gem 'pry', '~> 0.14.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

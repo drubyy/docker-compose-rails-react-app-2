@@ -4,6 +4,8 @@ paginate:
 validate:
   resource:
     resource_id_max_length: 100
+  user:
+    email_max_length: 30
 
 video_info:
   prefix:
