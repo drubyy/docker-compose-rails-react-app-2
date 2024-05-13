@@ -3,7 +3,7 @@ import Navbar from '../headers/Navbar';
 import Container from 'react-bootstrap/Container';
 import { useActionCable, useChannel } from '../../utils/helpers/useSocket';
 import { notification } from 'antd';
-import { isUserLoggedIn } from '../../utils/manageAuthentication';
+import { currentUser, isUserLoggedIn } from '../../utils/manageAuthentication';
 import { GENERAL_NOTIFICATION_CHANNEL } from '../../utils/consts/action-cable';
 import { IActionCableDataReceive } from '../../interfaces/action-cable.interface';
 
@@ -28,9 +28,11 @@ function WithNotifycationLayout({ childComponent, showLink=true, triggerFetchVid
         },
         {
           received: (data: IActionCableDataReceive) => {
+            if (data.sender === currentUser.email) return;
+
             switch (data.message) {
               case 'new_video_has_been_shared':
-                showNotifyNewVideoShared(`New movie has been shared by ${data.data.sharedBy} - ${data.data.resourceTitle}`, 'topRight');
+                showNotifyNewVideoShared(`New movie has been shared by ${data.sender} - ${data.data.resourceTitle}`, 'topRight');
                 break;
               default:
                 break;

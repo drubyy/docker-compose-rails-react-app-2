@@ -32,7 +32,8 @@ class NotifycationChannel < ApplicationCable::Channel
       CHANNEL_IDENTIFY, {
         type: :notify,
         message: :new_video_has_been_shared,
-        data: { resourceTitle: video.title, sharedBy: resource.user.email }
+        sender: resource.user.email,
+        data: { resourceTitle: video.title }
       }
     )
   end
