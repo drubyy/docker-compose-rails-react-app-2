@@ -16,7 +16,7 @@ RSpec.describe ResourcesController, type: :controller do
         sign_in user
       end
 
-      context "when resource invalid" do
+      context "when resource valid" do
         let(:create_resource_params) {{ resource: {resource_id: "06-XXOTP3Gc"}}}
 
         it "should create resource successfully" do
@@ -24,7 +24,7 @@ RSpec.describe ResourcesController, type: :controller do
 
           expect(Resource.count).to eq(1)
           expect(response).to have_http_status(:ok)
-          expect(response.body).to eq({status: 200}.to_json)
+          expect(response.body).to eq({status: 200, data: { id: Resource.first.reload.id }}.to_json)
         end
       end
 
@@ -37,6 +37,7 @@ RSpec.describe ResourcesController, type: :controller do
           expect(Resource.count).to eq(0)
           expect(response).to have_http_status(:unprocessable_entity)
           expect(JSON.parse(response.body)).to have_key("errors")
+          expect(JSON.parse(response.body)["errors"]["resource_id"].any? {|err| err.include?('is too long')}).to be_truthy
         end
       end
 
@@ -48,7 +49,7 @@ RSpec.describe ResourcesController, type: :controller do
 
           expect(Resource.count).to eq(0)
           expect(response).to have_http_status(:bad_request)
-          expect(JSON.parse(response.body)).to have_key("error")
+          expect(JSON.parse(response.body)["error"].include?("Something went wrong: param is missing")).to be_truthy
         end
       end
     end
