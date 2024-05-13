@@ -1,5 +1,5 @@
-class NotifycationChannel < ApplicationCable::Channel
-  CHANNEL_IDENTIFY = :general_notification_channel
+class NotifyChannel < ApplicationCable::Channel
+  CHANNEL_IDENTIFY = :general_notify_channel
   NOTIFY_TYPES = {
     new_video: 'new_video_has_been_shared'
   }

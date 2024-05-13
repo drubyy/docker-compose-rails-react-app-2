@@ -27,6 +27,7 @@ gem 'fast_jsonapi'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'kaminari'
 gem 'config'
+gem 'redis', '~> 4.0'
 
 # Simple Ruby Gem to get video information from different providers, Read more: https://github.com/thibaudgg/video_info
 gem 'video_info'
