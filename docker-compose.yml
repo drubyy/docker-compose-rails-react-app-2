@@ -1,14 +1,5 @@
 version: "3.9"
 services:
-  db:
-    image: postgres:12.1
-    volumes:
-      - data_db:/var/lib/postgresql/data
-    env_file:
-      - .env
-    ports:
-      - "5432:5432"
-    container_name: remi-db
   app:
     build: .
     container_name: remi-app
@@ -19,9 +10,6 @@ services:
       - .:/app
     ports:
       - "3001:3001"
-    depends_on:
-      - db
-      - redis
   app_frontend:
     container_name: remi-app-frontend
     build:
@@ -38,5 +26,4 @@ services:
     ports:
       - "6379:6379"
 volumes:
-  data_db:
   node_modules:
