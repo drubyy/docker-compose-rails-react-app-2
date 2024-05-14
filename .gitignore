@@ -38,3 +38,5 @@ config/environments/*.local.yml
 /frontend/.env
 
 .ssh
+
+config/master.key
