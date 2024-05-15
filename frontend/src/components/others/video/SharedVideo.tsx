@@ -5,6 +5,7 @@ import './style.css'
 import { IOriginalResourceRes } from '../../../interfaces/resource.interface';
 import { IMemberRes } from '../../../interfaces/member.interface';
 import { IYtResourceItem } from '../../../interfaces/youtube-resource.interface';
+import { Typography } from "antd";
 
 type Props = {
   originResource: IOriginalResourceRes;
@@ -29,14 +30,14 @@ function SharedVideo({ originResource, members, resources }: Props) {
 
   return (
     <Row>
-      <Col sm={6}><iframe title="Sample" width="550" height="375" src={urlEmbed()}></iframe></Col>
+      <Col sm={6}><iframe className="video-shared" title="Sample" src={urlEmbed()}></iframe></Col>
       <Col sm={6}>
         <p className='title-video-youtube'>{target.snippet.title}</p>
-        <p>Shared by: {sharedBy()}</p>
-        <div>
-          <p>Description:</p>
-          <p>{target.snippet.description}</p>
-        </div>
+        <b>Shared by: </b>{sharedBy()}<br/>
+        <b>Description: </b>
+        <Typography.Paragraph ellipsis={{ rows: 5, expandable: 'collapsible', symbol: ((expanded: boolean) => expanded ? 'Show less' : 'Show more') }}>
+          {target.snippet.description}
+        </Typography.Paragraph>
       </Col>
     </Row>
   );

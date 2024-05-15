@@ -54,8 +54,11 @@ const Dashboard = () => {
         <>
           {
             originalResources && originalResources.map((originResource: IOriginalResourceRes) => (
-              <SharedVideo key={originResource.id} originResource={originResource} members={members} resources={resources} />
-            ))
+                <>
+                  <SharedVideo key={originResource.id} originResource={originResource} members={members} resources={resources} /><br/>
+                </>
+              )
+            )
           }
           <Pagination current={currentPage} total={totalRecords} onChange={(page) => handleChangePage(page)} />
         </>

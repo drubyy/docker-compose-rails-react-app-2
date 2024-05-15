@@ -1,15 +1,21 @@
 .navbar {
-  font-size: 50px;
   color: white;
-  background-color: red;
+  background-color: red !important;
   text-align: -webkit-center;
-  padding-left: 200px;
-  padding-right: 50px;
+}
+
+.site-name {
+  font-size: xx-large;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
+}
+
+.text-xl {
+font-size: 50px;
+  color: white;
 }
 
 .navbar-default-wrapper {
@@ -39,4 +45,33 @@
 
 .wrapper-user-infor button {
   color: red;
+}
+
+.user-email {
+  margin-right: 20px;
+}
+
+.user-email-mobile {
+  display: none;
+}
+
+.video-shared {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+@media (min-width: 992px) {
+  .navbar-default-wrapper .flex-justify-end {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .user-email {
+    display: none;
+  }
+
+  .user-email-mobile {
+    display: block;
+  }
 }
