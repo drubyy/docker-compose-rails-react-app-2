@@ -78,4 +78,4 @@
 ## Troubleshooting
 
 ## Others
-DEMO: https://master.d34spwopu0ty0q.amplifyapp.com/
+DEMO: [https://master.d34spwopu0ty0q.amplifyapp.com/](https://master.d12wbqcp0mdzh6.amplifyapp.com/)
